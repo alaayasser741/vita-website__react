@@ -8,7 +8,7 @@ const Header = () => {
     // Toggle Menu
     const [toggle, showMenu] = useState(false);
     return (
-        <Navbar className='header' bg="light" expand="lg">
+        <Navbar className='header' expand="lg">
             <Container >
                 <Link className="nav__logo" to='/'>
                     <img src={logo} alt='logo' />

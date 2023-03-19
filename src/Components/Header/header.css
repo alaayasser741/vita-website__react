@@ -4,7 +4,7 @@
 form{
     position: relative;
     display: flex;
-    gap: .5rem;
+    gap: 1.5rem;
 }
 .nav__logo img{
     min-width: 150px;
