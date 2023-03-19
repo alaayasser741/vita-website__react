@@ -1,23 +1,35 @@
-import logo from './logo.svg';
-import './App.css';
+import "./App.css";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import Header from "./Components/Header/Header";
+import Footer from "./Components/Footer/Footer";
+import Home from "./Pages/Home/Home";
+import Login from "./Pages/Login/Login";
+import SignUp from "./Pages/SignUp/SignUp";
+import Calculations from "./Pages/Calculations/Calculations";
+import FirstAid from "./Pages/FirstAid/FirstAid";
+import Subjects from "./Pages/MidcalSubjects/Subjects";
+import News from "./Pages/News/News";
+import SingleNew from "./Pages/SingleNew/SingleNew";
+import ViewCalc from "./Pages/ViewCal/ViewCalc";
 
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Router>
+      <Header/>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<SignUp />} />
+          <Route path="/subjects" element={<Subjects />} />
+          <Route path="/calculations" element={<Calculations />} />
+          <Route path="/viewCalc" element={<ViewCalc />} /> 
+          <Route path="/firstAid" element={<FirstAid />} />
+          <Route path="/news" element={<News />} />
+          <Route path="/singleNew" element={<SingleNew />} />
+        </Routes>
+      <Footer/>
+      </Router>
     </div>
   );
 }
