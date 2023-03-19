@@ -88,6 +88,10 @@ textarea {
     font-size: var(--normal-font-size);
 }
 
+a {
+    font-family: 'Tajawal', sans-serif;
+}
+
 body {
     background-color: var(--body-color);
     color: var(--text-color);
@@ -208,15 +212,22 @@ p {
     }
 }
 
+.grid {
+    display: grid;
+    gap: 1.5rem;
+}
+
 /* Buttons */
 .button {
     display: inline-block;
     background-color: var(--main-color);
     color: var(--container-color);
-    padding: .5rem 1.5rem;
-    border-radius: 1rem;
+    padding: .5rem 2.5rem;
+    border-radius: 30px;
     font-weight: var(--font-medium);
     transition: 0.3s;
+    font-size: 1rem;
+    font-family: 'Tajawal';
 }
 
 .button:hover {

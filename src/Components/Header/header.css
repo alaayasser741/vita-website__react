@@ -1,0 +1,47 @@
+.header{
+    padding: 1.5rem 0 !important;
+}
+form{
+    position: relative;
+    display: flex;
+    gap: .5rem;
+}
+.nav__logo img{
+    min-width: 150px;
+}
+.search-input{
+    border-radius: 30px;
+    border: 1px solid #A9A9A9;
+    padding: 0.3rem .5rem;
+    padding-inline-start: 2.5rem;
+    font-size: 1rem;
+    width: 100%;
+}
+.search-input:focus{
+    outline: none;
+}
+.search-icon{
+    position: absolute;
+    inset-inline-start: 10px;
+    inset-block-start: 50%;
+    transform: translateY(-50%);
+    color:#A9A9A9;
+}
+.nav__item{
+    display: flex;
+    align-items: center;
+    text-align: center;
+}
+.nav__item a{
+    color: var(--text-color) !important;
+}
+.nav__item a:hover{
+    color: var(--title-color)!important;
+}
+.nav__singUp a{
+    color: var(--container-color) !important;
+
+}
+.navbar-nav-scroll{
+        max-height: 170px !important;
+}
