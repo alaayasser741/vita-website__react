@@ -1,0 +1,110 @@
+   .main__footer{
+    background-color: #F1F1F1;
+    padding-block: 2rem;
+    border-block-end: 1px solid #A9A9A9;
+}
+.footer__logo{
+    min-width: 160px;
+    display: block;
+    margin-block-end: 2rem;
+}
+.main_footer__content{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.main_footer__links h3{
+font-size: 1rem;
+margin-block-end: 2rem;
+}
+.footer__links-container{
+    display: flex;
+    gap: 1rem;
+    justify-content: flex-start;
+}
+.footer__links-container a{
+    color: var(--text-color);
+}
+.footer__links-container a:hover{
+    color: var(--title-color);
+}
+.newsletter h3{
+    font-size: 20px;
+    margin-block-end: .8rem;
+    color: var(--main-color);
+}
+.newsletter span{
+    font-size: 14px;
+    color: var(--text-color);
+    margin-block-end: .6rem;
+    display: block;
+}
+.newsletter form {
+    gap: 0;
+    width: 100%;
+}
+.newsletter input{
+    outline: 0;
+    border: 1px solid #A9A9A9;
+    padding:.3rem .7rem ;
+}
+.newsletter input[type="email"]{
+    border-radius: 0 30px 30px 0;
+    width: 100%;
+    border-inline-end: 0;
+    
+}
+.newsletter input[type="submit"]{
+    border-radius: 30px 0px 0px 30px;
+    background-color: var(--main-color);
+    color: var(--container-color);
+    border-inline-start: 0;
+    transition: 0.4s;
+
+}
+.newsletter input[type="submit"]:hover{
+    background-color: var(--main-color-alt);
+
+}
+
+.right__footer{
+    padding-block: 1rem;
+    background-color: #F1F1F1;
+}
+.right__footer .container{
+    display: flex;
+    justify-content: space-between;
+    gap: 2rem;
+}
+.copyRight span{
+    margin-inline-end: 1rem;
+}
+.social{
+    display: flex;
+    gap: .5rem;
+}
+.social a{
+    background-color: #A9A9A9;
+    border-radius: 50%;
+    width: 25px ;
+    height: 25px;
+    color: var(--container-color);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.4s;
+}
+.social a:hover{
+    color: var(--container-color);
+    background-color: var(--main-color);
+}
+@media (width < 769px) {
+    .main_footer__content,.right__footer .container{
+        flex-direction: column;
+    }
+}
+@media (width < 376px){
+    .footer__links-container{
+        flex-direction: column;
+    }
+}
