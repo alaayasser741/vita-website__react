@@ -4,8 +4,8 @@ import main1 from '../../assets/main1.png'
 import link1 from '../../assets/wrongLight.svg'
 import link2 from '../../assets/calc.svg'
 import link3 from '../../assets/courses.svg'
-
-
+import video1 from '../../assets/vedio1.png';
+import new1 from '../../assets/new1.png'
 import { Link } from 'react-router-dom'
 import { UilAngleLeft } from '@iconscout/react-unicons'
 import home from './home.css'
@@ -62,24 +62,65 @@ const Home = () => {
                 <img src={link1} alt="FristAid" />
                 <Link to="/firstAid">الاسعافات الاولية</Link>
               </div>
-              <UilAngleLeft className="link-icon"/>
+              <UilAngleLeft className="link-icon" />
             </div>
             <div className="home__quick-Link">
               <div className="link__title">
                 <img src={link2} alt="FristAid" />
                 <Link to="/calculations">حاسبات طبية</Link>
               </div>
-              <UilAngleLeft className="link-icon"/>
+              <UilAngleLeft className="link-icon" />
             </div>
             <div className="home__quick-Link">
               <div className="link__title">
                 <img src={link3} alt="FristAid" />
                 <Link to="/courses">دورات تدريبية</Link>
               </div>
-              <UilAngleLeft className="link-icon"/>
+              <UilAngleLeft className="link-icon" />
             </div>
           </Col>
         </Row>
+        <div className="home__video">
+                <h3 className="home__video--title">فيديوهات مقترحة</h3>
+                <div className="video__container">
+                  <a href="#">
+                    <div className="video__box">
+                      <img src={video1} alt="video-thumbnail" />
+                      <h4 className="vedio__title">تشريح العين</h4>
+                    </div>
+                  </a>
+                  <a href="#">
+                    <div className="video__box">
+                      <img src={video1} alt="video-thumbnail" />
+                      <h4 className="vedio__title">تشريح العين</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+              <div className="home__news">
+                <h3 className="home__news--title">اخر الاخبار</h3>
+                <div className="news__container">
+                  <img src={new1} className='new--img' alt="img-new" />
+                  <div className="news__contnet">
+                    <a href="#" className="new__info">
+                      <h4>اخبار</h4>
+                      <p>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</p>
+                    </a>
+                    <a href="#" className="new__info">
+                      <h4>اخبار</h4>
+                      <p>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</p>
+                    </a>
+                    <a href="#" className="new__info">
+                      <h4>اخبار</h4>
+                      <p>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</p>
+                    </a>
+                    <a href="#" className="new__info">
+                      <h4>اخبار</h4>
+                      <p>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</p>
+                    </a>
+                  </div>
+                </div>
+              </div>
       </Container>
     </div >
   )
