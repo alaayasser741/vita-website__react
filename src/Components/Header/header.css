@@ -45,3 +45,8 @@ form{
 .navbar-nav-scroll{
         max-height: 170px !important;
 }
+@media (width <992px){
+.header{
+    box-shadow: rgba(99, 99, 99, 0.06) 0px 2px 8px 0px;
+}
+}
