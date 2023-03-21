@@ -37,12 +37,12 @@ const Header = () => {
                             </Link>
                         </li>
                         <li className="nav__item">
-                            <Link to="/viewCalc" className="nav__link">الإسعافات الاولية
+                            <Link to="/firstAid" className="nav__link">الإسعافات الاولية
 
                             </Link>
                         </li>
                         <li className="nav__item">
-                            <Link to="/firstAid" className="nav__link">دورات تدريبية
+                            <Link to="/courses" className="nav__link">دورات تدريبية
 
                             </Link>
                         </li>
