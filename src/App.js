@@ -9,7 +9,7 @@ import Calculations from "./Pages/Calculations/Calculations";
 import FirstAid from "./Pages/FirstAid/FirstAid";
 import Subjects from "./Pages/MidcalSubjects/Subjects";
 import News from "./Pages/News/News";
-import SingleNew from "./Pages/SingleNew/SingleNew";
+import Articles from "./Pages/Articles/Articles";
 import ViewCalc from "./Pages/ViewCal/ViewCalc";
 
 function App() {
@@ -27,7 +27,7 @@ function App() {
             <Route path="/viewCalc" element={<ViewCalc />} />
             <Route path="/firstAid" element={<FirstAid />} />
             <Route path="/news" element={<News />} />
-            <Route path="/singleNew" element={<SingleNew />} />
+            <Route path="/articles" element={<Articles />} />
           </Routes>
         </main>
         <Footer />

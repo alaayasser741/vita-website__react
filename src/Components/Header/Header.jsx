@@ -47,11 +47,16 @@ const Header = () => {
                             </Link>
                         </li>
                         <li className="nav__item">
-                            <Link to="/news" className="nav__link">الاخبار
+                            <Link to="/articles" className="nav__link">مقالات
 
                             </Link>
                         </li>
 
+                        <li className="nav__item">
+                            <Link to="/news" className="nav__link">الاخبار
+
+                            </Link>
+                        </li>
                     </Nav>
 
                     <form>

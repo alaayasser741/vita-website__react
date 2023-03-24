@@ -1,0 +1,32 @@
+.Articles{
+    margin-block: 3rem;
+    
+}
+.article__title{
+    font-size: 24px;
+    margin-block-end: 2rem;
+}
+.article__info{
+    align-items: center;
+    margin-block-end: 2rem;
+}
+.article__info-img{
+    margin-block-end: 2rem;
+    overflow: hidden;
+    border-radius: 20px;
+}
+.article__info-img img{
+    width: 100%;
+}
+.article__info-description p {
+    color: var(--title-color);
+}
+.article__details{
+    line-height: 2;
+    color: var(--title-color);
+}
+@media (width < 350px) {
+    .article__title{
+        font-size: 1.2rem;
+    }
+}

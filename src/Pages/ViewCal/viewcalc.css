@@ -200,6 +200,13 @@
     color: var(--text-color);
     margin-block-end: .4rem;
     display: block;
+    transition: 0.4s;
+}
+.calc__box a:hover{
+    color: var(--title-color);
+}
+.BMR__share{
+    margin-block-start: 2rem;
 }
 .quest__Links a:hover{
     color: var(--title-color);
