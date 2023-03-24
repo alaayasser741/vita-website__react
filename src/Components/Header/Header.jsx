@@ -32,7 +32,7 @@ const Header = () => {
 
                         </li>
                         <li className="nav__item">
-                            <Link to="/viewCalc" className="nav__link">حاسبات طبية
+                            <Link to="/calculations" className="nav__link">حاسبات طبية
 
                             </Link>
                         </li>

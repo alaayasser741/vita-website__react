@@ -1,8 +1,28 @@
 .viewCalc {
-    margin-block-end: 2rem;
-    ;
-}
+    padding:4rem 2rem;
+    background-color: var(--container-color);
+    z-index: 999;
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 100%;
+    height: 100%;
+    overflow-y: scroll;
 
+}
+.close-Btn{
+    position: fixed;
+    right: 20px;
+    top: 20px;
+    background-color: var(--text-color);
+    color: var(--container-color);
+    border-radius: 50%;
+    transition: 0.4s;
+    cursor: pointer;
+}
+.close-Btn:hover{
+    background-color: var(--title-color);
+}
 .view__title {
     font-size: 24px;
     font-weight: 700;
@@ -11,6 +31,8 @@
 .view__subtitle {
     font-size: 1.1rem;
     font-weight: 400;
+    display: block;
+    margin-block-end: 1rem;
 }
 
 .view__calculator {
@@ -196,26 +218,32 @@
     padding-block-end: 1rem;
     border-bottom: 1px solid #D9D9D9;
 }
+
 .calc__box a {
     color: var(--text-color);
     margin-block-end: .4rem;
     display: block;
     transition: 0.4s;
 }
-.calc__box a:hover{
+
+.calc__box a:hover {
     color: var(--title-color);
 }
-.BMR__share{
+
+.BMR__share {
     margin-block-start: 2rem;
 }
-.quest__Links a:hover{
+
+.quest__Links a:hover {
     color: var(--title-color);
 }
+
 .quest__Links li a {
     color: var(--text-color);
     margin-block-end: .4rem;
     display: block;
 }
-.quest__Links li a:hover{
+
+.quest__Links li a:hover {
     color: var(--title-color);
 }

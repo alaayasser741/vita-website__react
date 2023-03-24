@@ -1,29 +1,66 @@
 import React, { useState } from 'react'
 import { Container, Row, Col } from 'react-bootstrap'
 import calcImg from '../../assets/viewImg.png'
-import { UilFacebookF, UilTwitter } from '@iconscout/react-unicons'
+import { UilFacebookF, UilTwitter, UilTimes } from '@iconscout/react-unicons'
 import './viewcalc.css';
 import articleImg from '../../assets/article.png'
 import sliderCalc from '../../assets/Silderclac.png'
 
-const ViewCalc = () => {
+const ViewCalc = ({ setShowForm, showTypeForm }) => {
   const [weight, setWeight] = useState('');
   const [height, setHeight] = useState('');
   const [age, setAge] = useState('');
   const [gender, setGender] = useState('male');
   const [bmr, setBMR] = useState('');
+  const [Ibw, setIBW] = useState('');
+  const [Bmi, setBMI] = useState('');
+
+
+  // BMR
   const calcBMR = (e) => {
     e.preventDefault();
-    const weightInKg = parseFloat(weight);
-    const heightInCm = parseFloat(height);
-    const ageInYears = parseFloat(age);
     let bmr;
     if (gender === 'male') {
-      bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * ageInYears + 5;
+      bmr = 10 * weight + 6.25 * height - 5 * age + 5;
     } else {
-      bmr = 10 * weightInKg + 6.25 * heightInCm - 5 * ageInYears - 161;
+      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
     }
     setBMR(bmr.toFixed(2));
+  }
+
+  // IBW
+  const calculateIBW = (e) => {
+    e.preventDefault();
+    const heightInM = height / 100;
+    let ibwInKgs = 0;
+
+    if (gender === 'male') {
+      ibwInKgs = 22 * (heightInM ** 2);
+    } else {
+      let heightInCm = heightInM - .1;
+      ibwInKgs = 22 * (heightInCm ** 2);
+    }
+
+    setIBW(ibwInKgs.toFixed(2));
+  }
+
+  const calcBMI = (e) => {
+    e.preventDefault();
+    const weightInKg = (weight);
+    const heightInM = (height / 100);
+    let BmiKgs = 0;
+    let BmiDetails = '';
+    BmiKgs = weight / (heightInM ** 2);
+    if (BmiKgs < 18.5) {
+      BmiDetails = `${BmiKgs.toFixed(2)} نقص في الوزن`
+    }else if(BmiKgs < 24.9){
+      BmiDetails = `${BmiKgs.toFixed(2)} الوزن الطبيعي`
+    }else if(BmiKgs < 29.9){
+      BmiDetails = `${BmiKgs.toFixed(2)} زيادة الوزن`
+    }else if(BmiKgs > 30){
+      BmiDetails = `${BmiKgs.toFixed(2)} بدين`
+    }
+    setBMI(BmiDetails)
   }
   const shareOnFacebook = () => {
     const url = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)} My Bmr is ${bmr} calories per day! 😀🖤`;
@@ -37,19 +74,20 @@ const ViewCalc = () => {
   return (
     <div className="viewCalc">
       <Container>
-        <h2 className="view__title">حاسبة مؤشر كتلة الجسم - BMI</h2>
-        <span className="view__subtitle">قياس يستخدم لتقييم وزن الشخص بالنسبة لطوله</span>
+        <UilTimes size="2rem" className="close-Btn" onClick={() => setShowForm(false)} />
+        <h2 className="view__title">{(showTypeForm === '0') ? "مؤشر كتلة الجسم - BMI" : (showTypeForm === '1') ? "حاسبة مؤشر كتلة الجسم - BMR" : (showTypeForm === '2') ? "وزن الجسم المثالي بموجب الطول - IBW" : (showTypeForm === '3') ? 'معدل نبضات القلب المستهدف - THR' : (showTypeForm === '4') ? 'حاسبة التبويض' : (showTypeForm === '5') ? 'حاسبة مراحل الحمل' : (showTypeForm === '6') ? 'حاسبة تطور الجنين' : 'حاسبة موعد الولادة'}</h2>
+        <span className="view__subtitle">{(showTypeForm === '0') ? "قياس يستخدم لتقييم وزن الشخص بالنسبة لطوله" : (showTypeForm === '1') ? "قياس نسبة السعرات الحرارية في الجسم" : (showTypeForm === '2') ? "قياس لمعرفة الوزن المثالي بموجب الطول" : (showTypeForm === '3') ? 'قياس لمعرفة معدل نبضات القلب الملائم للياقة القلب والرئتين وحرق الدهون' : (showTypeForm === '4') ? 'مساعدة على معرفة الايام اللتي تكون فيها درجة الاخصاب عالية' : (showTypeForm === '5') ? 'حاسبة لمواعيد مراحل الحمل المختلفة' : (showTypeForm === '6') ? 'حاسبة لمراحل نمو الجنين والتغييرات اللتي تطرأ على الجنين والمرأة الحامل' : 'حاسبة لموعد الولادة المتوقع'}</span>
         <Row>
           <Col xs={12} md={6} lg={8} className="view__calculator">
             <div className="view__img">
               <img src={calcImg} alt="Calc-Img" />
             </div>
-            <p className="calc__description">حاسبة ال- BMI هي اداة لتحديد اذا كان وزنك في معدله الطبيعي، زائد عن معدله الطبيعي او اقل من معدله الطبيعي. من الجدير بالذكر ان هذه الحاسبة غير ملائمة للاطفال والنساء الحوامل</p>
+            <p className="calc__description">حاسبة ال- BMR هي اداة لتحديد اذا السعرات الحرارية في اللازمة للجسم</p>
             <form className='BMR__form'>
               <input type="number" className='no-spinners' value={height} placeholder='الطول (سم)' onChange={(e) => setHeight(e.target.value)} />
-              <input type="number" className='no-spinners' value={weight} placeholder='الوزن (كجم)' onChange={(e) => setWeight(e.target.value)} />
-              <input type="number" className='no-spinners' value={age} placeholder='العمر' onChange={(e) => setAge(e.target.value)} />
-              <div className="calc__gender">
+              <input type="number" className='no-spinners' hidden={showTypeForm === "2"} value={weight} placeholder='الوزن (كجم)' onChange={(e) => setWeight(e.target.value)} />
+              <input type="number" className='no-spinners' hidden={showTypeForm === "2" || '0'} value={age} placeholder='العمر' onChange={(e) => setAge(e.target.value)} />
+              <div className="calc__gender" hidden={showTypeForm === '0'}>
                 <label className='gender__title'>الجنس:</label>
                 <div className="gender__male">
                   <label htmlFor="male" onClick={(e) => setGender("male")}>ذكر</label>
@@ -60,8 +98,8 @@ const ViewCalc = () => {
                   <input type="radio" name="gender" onClick={(e) => setGender("female")} id='female' value="female" />
                 </div>
               </div>
-              <button className='BMR_button' onClick={calcBMR}>احسب BMR</button>
-              <input type="text" placeholder='النتيجة' value={bmr} className='BMR_value' readOnly />
+              <button className='BMR_button' onClick={(showTypeForm === '0') ? calcBMI : (showTypeForm === '1') ? calcBMR : (showTypeForm === '2') ? calculateIBW : ''}>{(showTypeForm === '0') ? 'احسب BMI' : (showTypeForm === '1') ? 'احسب BMR' : (showTypeForm === '2') ? 'احسب IBW' : (showTypeForm === '3') ? 'احسب THR' : (showTypeForm === '4') ? '' : ''}</button>
+              <input type="text" placeholder='النتيجة' value={(showTypeForm === '0') ? Bmi : (showTypeForm === '1') ? bmr : (showTypeForm === '2') ? Ibw : ''} className='BMR_value' readOnly />
             </form>
             <div className="BMR__share">
               <h4>شارك</h4>
@@ -133,9 +171,9 @@ const ViewCalc = () => {
                 <img src={sliderCalc} alt="icon" />
                 <a href="#">حاسبة التبويض</a>
               </div>
-              
+
             </div>
-            
+
             <div className="slider__qestion">
               <h3>أكثر الأسئلة بحثاً</h3>
               <ul className="quest__Links">
