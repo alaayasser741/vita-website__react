@@ -20,10 +20,11 @@ const ViewCalc = ({ setShowForm, showTypeForm }) => {
   const calcBMR = (e) => {
     e.preventDefault();
     let bmr;
+    console.log(weight, height, age)
     if (gender === 'male') {
-      bmr = 10 * weight + 6.25 * height - 5 * age + 5;
+      bmr = (10 * weight) + (6.25 * height) - (5 * age) + 5;
     } else {
-      bmr = 10 * weight + 6.25 * height - 5 * age - 161;
+      bmr = (10 * weight) + (6.25 * height) - (5 * age) - 161;
     }
     setBMR(bmr.toFixed(2));
   }
@@ -53,22 +54,22 @@ const ViewCalc = ({ setShowForm, showTypeForm }) => {
     BmiKgs = weight / (heightInM ** 2);
     if (BmiKgs < 18.5) {
       BmiDetails = `${BmiKgs.toFixed(2)} نقص في الوزن`
-    }else if(BmiKgs < 24.9){
+    } else if (BmiKgs < 24.9) {
       BmiDetails = `${BmiKgs.toFixed(2)} الوزن الطبيعي`
-    }else if(BmiKgs < 29.9){
+    } else if (BmiKgs < 29.9) {
       BmiDetails = `${BmiKgs.toFixed(2)} زيادة الوزن`
-    }else if(BmiKgs > 30){
+    } else if (BmiKgs > 30) {
       BmiDetails = `${BmiKgs.toFixed(2)} بدين`
     }
     setBMI(BmiDetails)
   }
   const shareOnFacebook = () => {
-    const url = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)} My Bmr is ${bmr} calories per day! 😀🖤`;
+    const url = `https://www.facebook.com/sharer.php?u=${encodeURIComponent(window.location.href)} ${(showTypeForm === '0') ? `My BMI is ${Bmi} !` : (showTypeForm === '1') ? `My BMR is ${bmr} calories per day!` : (showTypeForm === '3') ? `My IBW is ${Ibw} !` : ''}  😀🖤`;
     window.open(url, '_blank');
   };
 
   const shareOnTwitter = () => {
-    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(`My BMR is ${bmr} calories per day! 😀🖤`)}`;
+    const url = `https://twitter.com/intent/tweet?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent(` ${(showTypeForm === '0') ? `My Bmi is ${Bmi} ` : (showTypeForm === '1') ? `My BMR is ${bmr} calories per day!` : (showTypeForm === '2') ? `My IBW is ${Ibw} ` : ''}  😀🖤`)}`;
     window.open(url, '_blank');
   };
   return (
@@ -82,7 +83,7 @@ const ViewCalc = ({ setShowForm, showTypeForm }) => {
             <div className="view__img">
               <img src={calcImg} alt="Calc-Img" />
             </div>
-            <p className="calc__description">حاسبة ال- BMR هي اداة لتحديد اذا السعرات الحرارية في اللازمة للجسم</p>
+            <p className="calc__description">{(showTypeForm === '0') ? "حاسبة ال- BMI هي اداة لتحديد اذا كان وزنك في معدله الطبيعي، زائد عن معدله الطبيعي او اقل من معدله الطبيعي. من الجدير بالذكر ان هذه الحاسبة غير ملائمة للاطفال والنساء الحوامل" : (showTypeForm === '1') ? "هي اداة لتحديد نسبة السعرات الحرارية في الجسم بناءا علي الوزن والطول والعمر والجنس" : (showTypeForm === '2') ? "هي اداة لقياس الوزن المثالي للجسم بناءا علي الطول" : (showTypeForm === '3') ? 'هي اداة لمعرفة نبضات القلب المستهدف' : (showTypeForm === '4') ? 'هي اداة للمساعدة علي معرفة الايام التي تكون فيها درجة الاخصاب عالية' : (showTypeForm === '5') ? 'هي اداة لقياس مواعيد الحمل المختلفة' : (showTypeForm === '6') ? 'هي اداة لقياس مراحل نمو الجنين والتغيرات التي تطرأ علي الجنين والمرأة الحامل' : 'هي اداة لقياس الموعد المتوقع للولادة'}</p>
             <form className='BMR__form'>
               <input type="number" className='no-spinners' value={height} placeholder='الطول (سم)' onChange={(e) => setHeight(e.target.value)} />
               <input type="number" className='no-spinners' hidden={showTypeForm === "2"} value={weight} placeholder='الوزن (كجم)' onChange={(e) => setWeight(e.target.value)} />
