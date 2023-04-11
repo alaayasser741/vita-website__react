@@ -247,3 +247,24 @@
 .quest__Links li a:hover {
     color: var(--title-color);
 }
+.descripition__content{
+    color: #000;
+    line-height: 1.6;
+}
+.HTR__list{
+    list-style: disc !important;
+    margin-block-start: 1rem;
+}
+.HTR__list li{
+    margin-inline-start: 2rem;
+    list-style: disc !important;
+}
+.not-Ready{
+    text-align: center;
+    font-size: 3rem;
+    color: var(--main-color);
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%,50%);
+}

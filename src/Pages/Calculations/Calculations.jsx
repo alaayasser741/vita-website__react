@@ -64,7 +64,7 @@ const Calculations = () => {
             <div className="calculation__box-info">
               <h5 onClick={() => {
                 setShowCalcPage(true);
-                setShowTypeForm('3')
+                setShowTypeForm('3');
               }}>معدل نبضات القلب المستهدف - THR</h5>
               <span>قياس لمعرفة معدل نبضات القلب الملائم للياقة القلب والرئتين وحرق الدهون</span>
             </div>
