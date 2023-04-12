@@ -131,3 +131,16 @@
     border-color: red !important;
     position: relative;
 }
+@media (width < 992px) {
+    .form__box{
+        min-width: 100% !important;
+    }
+}
+@media (width < 768px){
+    .form__box{
+        flex-direction: column !important;
+    }
+    .logo__info p{
+        text-align: center;
+    }
+}

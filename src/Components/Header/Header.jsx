@@ -62,7 +62,7 @@ const Header = () => {
                     <form>
                         <input className='search-input' type="search" placeholder='بحث' />
                         <UilSearch size="1.3rem" className="search-icon" />
-                        <button className="button nav__singUp"><Link to="/signup">تسجيل</Link></button>
+                        <button className="button nav__singUp"><Link to="/login">تسجيل</Link></button>
                     </form>
 
 
