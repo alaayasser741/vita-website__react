@@ -1,18 +1,30 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import './articles.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import articleImg from '../../assets/new2.png'
+import axios from 'axios'
 const Articles = () => {
+  // const [articles, setArticles] = useState([]);
+  // const Url = `https://getguidelines.p.rapidapi.comhttps//getguidelines.com/all`
+  // useEffect(() => {
+  //   axios.get(Url).then((response) => {
+  //     setArticles(response.data)
+  //     console.log(response)
+  //   }).catch(error => {
+  //     console.log(error)
+  //   })
+  // }, [])
   return (
     <div className="Articles">
       <Container>
+
         <h2 className='article__title'>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</h2>
         <Row className="article__info">
           <Col lg={4} sm={12}>
-            <div  className="article__info-img">
+            <div className="article__info-img">
               <img src={articleImg} alt="new-img" />
             </div>
-            </Col>
+          </Col>
           <Col lg={8} sm={12} className="article__info-description">
             <p>الأربعاء 1، آذار/مارس، 2023 (أخبار HealthDay) -- ممارسة التمارين الرياضية بانتظام في مرحلة ما من الحياة هي الأساس في الاستمتاع بصحة إدراكية أفضل في السن المتقدمة، حسبما قال الباحثون. البدء مبكرًا أفضل وكذلك الاستمرار في الممارسة لوقت أطول أفضل.</p>
             <p>كشفت دراسة بريطانية جديدة أن ممارسة التمارين الرياضية لمرة واحدة على الأقل في الشهر في أي وقت في مرحلة البلوغ ترتبط بالقدرة على التفكير وعمل الذاكرة بشكل أفضل في مرحلة لاحقة من الحياة.</p>

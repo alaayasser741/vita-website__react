@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { Container, Row, Col, Carousel } from 'react-bootstrap'
 import main1 from '../../assets/main1.png'
 import link1 from '../../assets/wrongLight.svg'
@@ -8,8 +8,27 @@ import video1 from '../../assets/vedio1.png';
 import new1 from '../../assets/new1.png'
 import { Link } from 'react-router-dom'
 import { UilAngleLeft } from '@iconscout/react-unicons'
-import home from './home.css'
+import home from './home.css';
+import axios from 'axios'
 const Home = () => {
+  const [news, setNews] = useState([]);
+  const key = '7c5a04e8728d45b699d6f29613e3e32a';
+  const Url = `https://newsapi.org/v2/top-headlines?country=eg&category=health&apiKey=${key}`
+  useEffect(() => {
+    axios.get(Url).then((response) => {
+      setNews(response.data.articles)
+      console.log(response.data.articles)
+    }).catch(error => {
+      console.log(error)
+    })
+  }, [])
+  // Randomly select 5 news articles
+  const selectedNews = [];
+  while (selectedNews.length < 5 && news.length > 0) {
+    const index = Math.floor(Math.random() * news.length);
+    selectedNews.push(news[index]);
+    news.splice(index, 1);
+  }
   return (
     <div className='home'>
       <Container>
@@ -81,46 +100,36 @@ const Home = () => {
           </Col>
         </Row>
         <div className="home__video">
-                <h3 className="home__video--title">فيديوهات مقترحة</h3>
-                <div className="video__container">
-                  <a href="#">
-                    <div className="video__box">
-                      <img src={video1} alt="video-thumbnail" />
-                      <h4 className="vedio__title">تشريح العين</h4>
-                    </div>
-                  </a>
-                  <a href="#">
-                    <div className="video__box">
-                      <img src={video1} alt="video-thumbnail" />
-                      <h4 className="vedio__title">تشريح العين</h4>
-                    </div>
-                  </a>
-                </div>
+          <h3 className="home__video--title">فيديوهات مقترحة</h3>
+          <div className="video__container">
+            <a href="#">
+              <div className="video__box">
+                <img src={video1} alt="video-thumbnail" />
+                <h4 className="vedio__title">تشريح العين</h4>
               </div>
-              <div className="home__news">
-                <h3 className="home__news--title">اخر الاخبار</h3>
-                <div className="news__container">
-                  <img src={new1} className='new--img' alt="img-new" />
-                  <div className="news__contnet">
-                    <a href="#" className="new__info">
-                      <h4>اخبار</h4>
-                      <p>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</p>
-                    </a>
-                    <a href="#" className="new__info">
-                      <h4>اخبار</h4>
-                      <p>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</p>
-                    </a>
-                    <a href="#" className="new__info">
-                      <h4>اخبار</h4>
-                      <p>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</p>
-                    </a>
-                    <a href="#" className="new__info">
-                      <h4>اخبار</h4>
-                      <p>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</p>
-                    </a>
-                  </div>
-                </div>
+            </a>
+            <a href="#">
+              <div className="video__box">
+                <img src={video1} alt="video-thumbnail" />
+                <h4 className="vedio__title">تشريح العين</h4>
               </div>
+            </a>
+          </div>
+        </div>
+        <div className="home__news">
+          <h3 className="home__news--title">اخر الاخبار</h3>
+          <div className="news__container">
+            <img src={new1} className='new--img' alt="img-new" />
+            <div className="news__contnet">
+              {selectedNews.map(({ title, url, author }) => {
+                return (<a key={title} target='_blank' href={url} className="new__info">
+                  <h4>{title}</h4>
+                  <span>{author}</span>
+                </a>)
+              })}
+            </div>
+          </div>
+        </div>
       </Container>
     </div >
   )

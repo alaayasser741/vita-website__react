@@ -15,6 +15,7 @@ import ViewCalc from "./Pages/ViewCal/ViewCalc";
 function App() {
   return (
     <div className="App">
+          <div id="chunky-chat-widget"></div>
       <Router>
         <Header />
         <main>
