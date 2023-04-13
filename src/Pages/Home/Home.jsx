@@ -17,7 +17,6 @@ const Home = () => {
   useEffect(() => {
     axios.get(Url).then((response) => {
       setNews(response.data.articles)
-      console.log(response.data.articles)
     }).catch(error => {
       console.log(error)
     })

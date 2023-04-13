@@ -28,8 +28,7 @@ const SignUp = () => {
     e.preventDefault();
     handleEmailChange();
     handlePasswordChange();
-    console.log(validEmail + ' ' + email)
-    console.log(validPassword + ' ' + password)
+
   }
   return (
     <div className='section sign'>
