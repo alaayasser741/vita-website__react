@@ -1,30 +1,42 @@
 import React, { useRef, useState } from 'react'
-import { UilImageUpload, UilImage, UilCheck } from '@iconscout/react-unicons'
-import './news.css'
+import { UilImageUpload } from '@iconscout/react-unicons'
+import './news.css';
+import { Spinner } from 'react-bootstrap';
+import axios from 'axios'
 const News = () => {
-  const [file, setFile] = useState(null);
+  const [imageFiles, setImageFiles] = useState(null)
+  const [results, setResults] = useState('');
   const [progress, setProgress] = useState(0);
   const [fileName, setFileName] = useState('');
+  const [loading, setLoading] = useState(0)
   const fileInputRef = useRef(null);
   const handleFileClick = (e) => {
     fileInputRef.current.click();
   }
   const handleInputChange = ({ target }) => {
     let file = target.files[0];
-    setFile(target.files[0]);
+
+    try {
+      const reader = new FileReader();
+      reader.readAsDataURL(file);
+      reader.onloadend = () => {
+        setImageFiles(reader.result);
+      };
+    } catch (error) {
+      console.log(error)
+    }
     if (file) {
       let fileName = file.name;
-      console.log(fileName);
       setFileName(fileName);
     }
     handleUpload();
   }
   const handleUpload = () => {
     const formData = new FormData();
-    formData.append('file', file);
+    formData.append('image', imageFiles);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('POST', 'https://eslamelsheikh-pneumonia-detect.hf.space/run/predict');
+    xhr.open('POST', '/upload');
     xhr.upload.addEventListener('progress', event => {
       if (event.lengthComputable) {
         const percentComplete = Math.round((event.loaded / event.total) * 100);
@@ -33,7 +45,30 @@ const News = () => {
     });
     xhr.send(formData);
   };
-
+  const handleSubmit = async (e) => {
+    setLoading(1);
+    const requestBody = {
+      data: [
+        imageFiles
+      ]
+    };
+    e.preventDefault();
+    try {
+      const response = await axios.post("https://eslamelsheikh-pneumonia-detect.hf.space/run/predict", requestBody, {
+        headers: {
+          "Content-Type": "application/json"
+        }
+      });
+      const data = response.data.data;
+      setResults(data[0].label);
+      setLoading(0);
+    } catch (error) {
+      console.log(error)
+      setTimeout(() => {
+        setLoading(0);
+      }, 500);
+    }
+  }
 
 
   return (
@@ -46,14 +81,14 @@ const News = () => {
             ref={fileInputRef}
             onChange={handleInputChange}
           />
+
           <UilImageUpload />
           <p>تصفح ملفاتك</p>
         </form>
         <ul className="progress-area">
-          {file && (
+          {imageFiles && (
             <li className="progress__row">
-
-              <UilImage size="30px" />
+              <img style={{ width: '40px' }} src={imageFiles} alt="Pneumonia-Image" />
               <div className="progress__content">
                 <div className="progress__details">
                   <span className="progress__name">{fileName && fileName + '• Uploaded'} </span>
@@ -66,20 +101,19 @@ const News = () => {
             </li>
           )}
         </ul>
-        <ul className="upload-area">
-          {file && (
+        {results != '' ?
+          <ul className="upload-area">
             <li className="upload__row">
               <div className="upload__content">
-                <UilImage size="30px" />
-                <div className="upload__details">
-                  <span className="upload__name">image_01.png • Uploaded</span>
-                  <span className="upload__size">128 KB</span>
-                </div>
+                <span className="upload__name">{results === 'Pneumonia' ? 'مصابة بالالتهاب الرئوي ولكن هذة لسيت معلومة مؤكدة بالرجاء المتابعة مع الطبيب المختص' : 'عادية ولكن هذة لسيت معلومة مؤكدة بالرجاء المتابعة مع الطبيب المختص'}</span>
               </div>
-              <UilCheck className='check--icon' />
             </li>
-          )}
-        </ul>
+          </ul> : null}
+        {loading === 0 ?
+          <button className="btn__submit" onClick={handleSubmit}>معالجة الصورة</button> :
+          <button className="btn__submit" disabled>
+            <Spinner animation="border" role="status">
+            </Spinner></button>}
       </div>
     </section>
   )

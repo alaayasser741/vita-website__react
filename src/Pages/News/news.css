@@ -87,6 +87,10 @@
     justify-content: space-between;
 }
 
+.upload__row {
+    justify-content: center;
+}
+
 .upload__content {
     display: flex;
     align-items: center;
@@ -131,4 +135,24 @@
 
 .upload-area::-webkit-scrollbar {
     width: 0;
+}
+
+.btn__submit {
+    width: 100%;
+    padding: 10px;
+    border-radius: 20px;
+    color: var(--container-color);
+    background-color: var(--main-color);
+    font-weight: 500;
+    font-size: 1.2rem;
+    transition: 0.3s;
+}
+
+.btn__submit:hover {
+    background-color: var(--main-color-alt);
+}
+
+.btn__submit:disabled {
+    background-color: #b2efef;
+    cursor: not-allowed;
 }
