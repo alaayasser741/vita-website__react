@@ -15,7 +15,12 @@ const Home = () => {
   const key = '7c5a04e8728d45b699d6f29613e3e32a';
   const Url = `https://newsapi.org/v2/top-headlines?country=eg&category=health&apiKey=${key}`
   useEffect(() => {
-    axios.get(Url).then((response) => {
+    axios.get(Url,{
+      header:{
+        'X-API-Key': key,
+        'Authorization': `Bearer ${key}`
+      }
+    }).then((response) => {
       setNews(response.data.articles)
     }).catch(error => {
       console.log(error)
