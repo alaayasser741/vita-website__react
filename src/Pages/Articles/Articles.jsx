@@ -4,9 +4,29 @@ import { Container, Row, Col } from 'react-bootstrap'
 import articleImg from '../../assets/new2.png'
 import axios from 'axios'
 const Articles = () => {
+  const apiKey = '7c5a04e8728d45b699d6f29613e3e32a';
+  const url = `https://newsapi.org/v2/top-headlines?country=eg&category=health&apiKey=${apiKey}`;
+  const [data, setData] = useState([])
+  fetch(url)
+    .then(response => response.json())
+    .then(data => {
+      setData(data.articles);
+    })
+    .catch(error => {
+      console.error(error);
+    });
   return (
     <div className="Articles">
       <Container>
+        {data.map(item => {
+          const { url, title } = item;
+          return (
+            <div key={title}>
+              <span>{title}</span>
+              <a href={url}>Link</a>
+            </div>
+          )
+        })}
         <h2 className='article__title'>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</h2>
         <Row className="article__info">
           <Col lg={4} sm={12}>
