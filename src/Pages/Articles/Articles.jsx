@@ -1,54 +1,12 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 import './articles.css'
 import { Container, Row, Col } from 'react-bootstrap'
 import articleImg from '../../assets/new2.png'
 import axios from 'axios'
-import imageFile from '../../assets/logo.png'
 const Articles = () => {
-  const [imageFiles, setImageFiles] = useState(null)
-  const [results, setResults] = useState('');
-  const handleInputChange = (e) => {
-    try{
-
-      const file = e.target.files[0];
-      const reader = new FileReader();
-      reader.readAsDataURL(file);
-      reader.onloadend = () => {
-        setImageFiles(reader.result);
-      };
-    }catch(error){
-      console.log(error)
-    }
-  }
-  const handleSubmit = async (e) => {
-
-    const requestBody = {
-      data: [
-        imageFiles
-      ]
-    };
-    e.preventDefault();
-    try {
-      const response = await axios.post("https://eslamelsheikh-pneumonia-detect.hf.space/run/predict", requestBody, {
-        headers: {
-          "Content-Type": "application/json"
-        }
-      });
-      const data = response.data.data;
-      setResults(data[0].label)
-    } catch (error) {
-      console.log(error)
-    }
-  }
   return (
-    <div className="Articles" onSubmit={handleSubmit}>
+    <div className="Articles">
       <Container>
-        <form action="">
-          <input type="file" id="image-input" onChange={handleInputChange} />
-          <input type="submit" value="Send" />
-          <label id="result-label">{results}</label>
-          <img style={{width:'400px'}} src={imageFiles} alt="Pneumonia-Image" />
-        </form>
         <h2 className='article__title'>ممارسة التمارين الرياضية لمرة واحدة في الشهر على الأقل يمكن أن يساعد مخك بعد عقود لاحقة</h2>
         <Row className="article__info">
           <Col lg={4} sm={12}>
