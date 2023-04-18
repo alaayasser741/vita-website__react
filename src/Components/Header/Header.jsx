@@ -26,8 +26,7 @@ const Header = () => {
 
                         </li>
                         <li className="nav__item">
-                            <Link to="/subjects" className="nav__link">الموضوعات الصحية
-
+                            <Link to="/subjects" className="nav__link">الموضوعات
                             </Link>
 
                         </li>
@@ -53,8 +52,7 @@ const Header = () => {
                         </li>
 
                         <li className="nav__item">
-                            <Link to="/news" className="nav__link">الاخبار
-
+                            <Link to="/news" className="nav__link">الالتهاب الرئوي
                             </Link>
                         </li>
                     </Nav>
