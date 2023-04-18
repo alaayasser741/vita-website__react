@@ -212,6 +212,7 @@
 }
 .new--img{
     max-width: 360px;
+    min-width: 250px;
 }
 .new__info{
     color: var(--text-color);
@@ -240,4 +241,10 @@
 .new--img{
     max-width: 100%;
 }
+}
+.news__descripition{
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
 }

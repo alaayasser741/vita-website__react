@@ -12,24 +12,24 @@ import home from './home.css';
 import axios from 'axios'
 const Home = () => {
   const [news, setNews] = useState([]);
-  const key = '7c5a04e8728d45b699d6f29613e3e32a';
-  const Url = `https://newsapi.org/v2/top-headlines?country=eg&category=health&apiKey=${key}`
+  const [isLoading, setIsLoading] = useState(0);
+  const key = 'pub_207103c641b7b159841b0db4846a0591f902f';
+  const Url = `https://newsdata.io/api/1/news?country=eg&category=health&apikey=${key}`
+  const [newsImage, setNewsImage] = useState('');
   useEffect(() => {
-    axios.get(Url,{
-      header:{
-        'X-API-Key': key,
-        'Authorization': `Bearer ${key}`
-      }
-    }).then((response) => {
-      setNews(response.data.articles)
-      console.log(response.data.articles)
+    axios.get(Url).then((response) => {
+      setNews(response.data.results)
+      // setNewsImage(response.data.data[0].image)
+      console.log(response.data.results)
+      setIsLoading(1)
     }).catch(error => {
       console.log(error)
+      setIsLoading(0)
     })
   }, [])
   // Randomly select 5 news articles
   const selectedNews = [];
-  while (selectedNews.length < 5 && news.length > 0) {
+  while (selectedNews.length < 4 && news.length > 0) {
     const index = Math.floor(Math.random() * news.length);
     selectedNews.push(news[index]);
     news.splice(index, 1);
@@ -107,16 +107,16 @@ const Home = () => {
         <div className="home__video">
           <h3 className="home__video--title">فيديوهات مقترحة</h3>
           <div className="video__container">
-            <a href="#">
+            <a href="https://www.youtube.com/watch?v=8cwRgomipyk" target='_blank'>
               <div className="video__box">
                 <img src={video1} alt="video-thumbnail" />
-                <h4 className="vedio__title">تشريح العين</h4>
+                <h4 className="vedio__title">تشريح العين بالعربي</h4>
               </div>
             </a>
-            <a href="#">
+            <a href="https://www.youtube.com/watch?v=f_rb6FMVHPk" target='_blank'>
               <div className="video__box">
                 <img src={video1} alt="video-thumbnail" />
-                <h4 className="vedio__title">تشريح العين</h4>
+                <h4 className="vedio__title">تشريح العين بالانجليزي</h4>
               </div>
             </a>
           </div>
@@ -124,14 +124,17 @@ const Home = () => {
         <div className="home__news">
           <h3 className="home__news--title">اخر الاخبار</h3>
           <div className="news__container">
-            <img src={new1} className='new--img' alt="img-new" />
+            { <img src={new1} className='new--img' alt="img-new" />}
             <div className="news__contnet">
-              {selectedNews.map(({ title, url, author }) => {
-                return (<a key={title} target='_blank' href={url} className="new__info">
+              {isLoading === 1 ? selectedNews.map(({ title, link, description, image }) => {
+                return (<a key={title} target='_blank' href={link} className="new__info">
                   <h4>{title}</h4>
-                  <span>{author}</span>
+                  <span className='news__descripition'>{description}</span>
                 </a>)
-              })}
+              }) : <a target='_blank' href={'#'} className="new__info">
+                <h4>اخبار</h4>
+                <span className='news__descripition'>بوجد مشكلة جاري حلها في اسرع وقت حاول لاحقا</span>
+              </a>}
             </div>
           </div>
         </div>
