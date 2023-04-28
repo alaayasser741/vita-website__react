@@ -30,6 +30,7 @@ const Calculations = () => {
               <h5 onClick={() => {
                 setShowCalcPage(true);
                 setShowTypeForm('1')
+                
               }} >حاسبة السعرات الحرارية - BMR</h5>
               <span>قياس يستخدم لتقييم وزن الشخص بالنسبة لطوله</span>
             </div>
@@ -42,6 +43,7 @@ const Calculations = () => {
               <h5 onClick={() => {
                 setShowCalcPage(true);
                 setShowTypeForm('2')
+                
               }}>وزن الجسم المثالي بموجب الطول - IBW</h5>
               <span>قياس لمعرفة الوزن المثالي بموجب الطول</span>
             </div>
