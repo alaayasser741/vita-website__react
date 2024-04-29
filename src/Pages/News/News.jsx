@@ -54,7 +54,7 @@ const News = () => {
     };
     e.preventDefault();
     try {
-      const response = await axios.post("https://eslamelsheikh-pneumonia-detect.hf.space/run/predict", requestBody, {
+      const response = await axios.post("https://eslamelsheikh-pneumonia-detect-v2.hf.space/run/predict", requestBody, {
         headers: {
           "Content-Type": "application/json"
         }
